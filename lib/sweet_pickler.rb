@@ -1,5 +1,15 @@
 require "sweet_pickler/version"
 
+require 'gherkin'
+require 'gherkin/formatters/model_formatter'
+require 'gherkin/parser/parser'
+
 module SweetPickler
   # Your code goes here...
+  autoload :SweetPickler, 'sweet_pickler/sweet_pickler'
+
+  def pickle file
+    SweetPickler.new(file)
+  end
+  module_function :pickle
 end

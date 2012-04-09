@@ -6,9 +6,7 @@ module SweetPickler
 
         @config = {}
 
-        #should probably make this parseable ruby
-
-        ['Trackerfile','~/.sweetpickler.yml'].each do |p|
+        ['.sweetpickler.yml','~/.sweetpickler.yml'].each do |p|
           if File.exist?(File.expand_path(p))
             @config.merge(YAML.load_file(p))
           end

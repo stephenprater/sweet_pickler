@@ -2,12 +2,12 @@ module SweetPickler
   class CLI < Thor
     class Project < Thor
       def set *args
-        # TODO
+        # TODO # append project number to Trackerfile
       end
     end
 
     def token *args
-      # TODO
+      # TODO #set the token for this project
     end
 
     def name *args
