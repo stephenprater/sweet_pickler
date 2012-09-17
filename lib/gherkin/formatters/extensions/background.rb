@@ -8,7 +8,7 @@ module Gherkin
 
         def replay formatter
           super
-          @steps.each do |step|
+          steps.each do |step|
             step.replay(formatter)
           end
         end

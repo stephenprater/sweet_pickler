@@ -4,6 +4,7 @@ module SweetPickler
       @ast = Gherkin::Formatter::ModelFormatter.new
       parser = Gherkin::Parser::Parser.new(@ast)
       parser.parse(IO.read(file),file,0)
+      debugger
     end
 
     def add_feature file

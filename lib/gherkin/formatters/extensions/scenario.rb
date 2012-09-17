@@ -3,7 +3,7 @@ module Gherkin
     module Extension
       module Scenario
         def steps
-          @steps ||= []
+          steps ||= []
         end
 
         def new_step step_obj
@@ -15,7 +15,7 @@ module Gherkin
 
         def replay formatter
           super
-          @steps.reach do |step|
+          steps.each do |step|
             step.replay(formatter)
           end
         end

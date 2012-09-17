@@ -5,6 +5,7 @@ module Gherkin
     module Model
       class BasicStatement < Hashable
         def initialize_with_extension *args
+          $stderr.puts "initializing with extension"
           initialize_without_extension(*args)
           begin
             extension_class = self.class.to_s.split('::').last
@@ -13,8 +14,6 @@ module Gherkin
           rescue NameError
             #there's no extension module for that class
           end
-
-
         end
         alias_method_chain :initialize, :extension
       end

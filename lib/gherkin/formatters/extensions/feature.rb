@@ -5,13 +5,12 @@ module Gherkin
         attr_accessor :background
 
         def scenarios
-          @scenarios ||= []
+          scenarios ||= []
         end
 
         def replay formatter
-          debugger
           super
-          @scenarios.each do |scen|
+          scenarios.each do |scen|
             scen.replay(formatter)
           end
         end

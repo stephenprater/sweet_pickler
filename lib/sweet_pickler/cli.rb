@@ -1,3 +1,8 @@
+require 'thor'
+
+require 'sweet_pickler/config'
+
+
 module SweetPickler
   class CLI < Thor
     class Project < Thor
@@ -18,21 +23,21 @@ module SweetPickler
       # TODO
     end
 
-    desc "List all stories matching a query"
+    desc "search [QUERY]", "List all stories matching a query"
     [:label, :type, :state].each do |o|
-      method_options o, :type => :string
+      method_option o, :type => :string
     end
 
     [:requester, :owner, :mywork].each do |o|
-      method_options o => :string, :default => SweetPickler::Config.real_name
+      method_option o => :string, :default => SweetPickler::Config.real_name
     end
 
-    method_options :includedone => :boolean, :banner => "included accepted stories"
-    method_options :"no-includedone" => :boolean, :banner => "do not include accepted stories"
+    method_option :includedone => :boolean, :banner => "included accepted stories"
+    method_option :"no-includedone" => :boolean, :banner => "do not include accepted stories"
 
-    method_options :backlog => :boolean, :aliases => '-b', :banner => 'filter results to future iterations'
-    method_options :current => :boolean, :aliases => '-c', :banner => 'filter results to current iteration'
-    method_options :full => :boolean, :banner => 'show full story, not a summary line'
+    method_option :backlog => :boolean, :aliases => '-b', :banner => 'filter results to future iterations'
+    method_option :current => :boolean, :aliases => '-c', :banner => 'filter results to current iteration'
+    method_option :full => :boolean, :banner => 'show full story, not a summary line'
     def search(query)
       # TODO
     end

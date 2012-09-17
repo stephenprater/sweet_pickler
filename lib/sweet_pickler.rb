@@ -13,3 +13,10 @@ module SweetPickler
   end
   module_function :pickle
 end
+
+module OtherThing
+  def okay
+    puts "yeah, I'm okay"
+  end
+  module_function :okay
+end

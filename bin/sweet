@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'sweet-pickler/cli'
+require 'sweet_pickler/cli'
 
 SweetPickler::CLI.start
