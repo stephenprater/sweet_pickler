@@ -2,8 +2,10 @@ module Gherkin
   module Formatter
     module Extension
       module Scenario
+        attr_writer :tags, :description, :id
+
         def steps
-          steps ||= []
+          @steps ||= []
         end
 
         def new_step step_obj
@@ -14,6 +16,7 @@ module Gherkin
         end
 
         def replay formatter
+          $stderr.puts "replaying #{self.id}"
           super
           steps.each do |step|
             step.replay(formatter)

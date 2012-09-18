@@ -12,6 +12,10 @@ module Gherkin
           next_step.nil?
         end
 
+        def replay formatter
+          super
+        end
+
         def next_step= step
           step.previous_step = self
           @next_step = step

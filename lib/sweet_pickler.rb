@@ -1,7 +1,7 @@
 require "sweet_pickler/version"
 
 require 'gherkin'
-require 'gherkin/formatters/model_formatter'
+require 'gherkin/formatter/model_formatter'
 require 'gherkin/parser/parser'
 
 module SweetPickler

@@ -1,4 +1,4 @@
-require 'gherkin/formatters/extensions'
+require 'gherkin/formatter/extensions'
 
 module Gherkin
   module Formatter
@@ -19,31 +19,29 @@ module Gherkin
       end
 
       def replay formatter
-        $stderr.puts "replay formatter"
         features.each do |feature|
           feature.replay(formatter)
         end
       end
 
       def features
-        $stderr.puts "features?"
         uris.values
       end
 
-      def feature feature_obj
-        $stderr.puts "feature emit"
+      def feature feature_obj = nil
+        if feature_obj.nil?
+          return Gherkin::Formatter::Model::Feature
+        end
         uris[current_uri] = feature_obj
         @current_feature = feature_obj
       end
 
       def background background_obj
-        $stderr.puts "background emit"
         current_feature.background = background_obj
         @current_background = background_obj
       end
 
       def scenario scenario_obj
-        $stderr.puts "scenario emit"
         current_feature.scenarios << scenario_obj
         @current_scenario = scenario_obj 
       end
@@ -51,25 +49,17 @@ module Gherkin
       # do we want to expand this here or convert it into steps
       # so that we wind up with multiple todos. i think maybe the latter
       def scenario_outline scenario_outline_obj
-        $stderr.puts "scenario outline emit"
         current_feature.scenarios << scenario_outline_obj
         @current_scenario = scenario_outline_obj
       end
 
       def examples examples_obj
-        $stderr.puts "examples emit"
         current_scenario.examples << examples_obj
         #examples is always the last thing
         @current_scenario = nil
       end
 
-      def tag tag_obj
-        $stderr.puts "tag emit"
-        debugger
-      end
-
       def step step_obj
-        $stderr.puts "step emit"
         if current_scenario
           current_scenario.steps << step_obj
         elsif current_background
@@ -78,6 +68,10 @@ module Gherkin
       end
       
       def eof
+        @current_scenario = nil
+        @current_background = nil
+        @current_feature = nil
+        @current_uri = nil
       end
     end
   end
